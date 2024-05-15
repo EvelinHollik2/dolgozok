@@ -27,13 +27,22 @@ namespace ConsoleApp1
         private static void feladat04()
         {
             Console.WriteLine("4.feladat:");
-            Console.WriteLine();
+            foreach (Dolgozo item in dolgozo.FindAll(a => a.reszleg.Equals("asztalosműhely")))
+            {
+                Console.WriteLine($"\t{item.nev}");
+            }
+            
         }
 
         private static void feladat03()
         {
             Console.WriteLine("3.feladat:");
-            Console.WriteLine();
+            foreach (var item in dolgozo.GroupBy(a => a.reszleg).Select(b => new {reszleg = b.Key, letszam = b.Count()}))
+            {
+                Console.WriteLine($"\t{item.reszleg} - {item.letszam}");
+
+            }
+            
         }
 
         private static void feladat02()
